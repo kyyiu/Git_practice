@@ -1,0 +1,117 @@
+浏览器上的手机模拟出现像素不一致（通常要两倍）
+解决方法： meta viewpoint
+
+什么是viewport。
+通俗的讲，移动设备上的viewport就是设备的屏幕上能用来显示我们的网页的那一块区域。
+再具体一点，就是浏览器上用来显示网页的那部分区域
+但viewport又不局限于浏览器可视区域的大小，它可能比浏览器的可视区域要大，
+也可能比浏览器的可视区域要小。
+a.移动设备的默认viewport：
+为了能在移动设备上正常显示那些传统的为桌面浏览器设计的网站，
+移动设备上的浏览器都会把自己默认的viewport设为980px或1024px
+（也可能是其它值，这个是由设备自己决定的）
+b.css中的px、移动设备的分辨率以及UI口中的‘像素’分别怎么理解
+css中的px：
+在桌面浏览器：1px（下面我们读成‘css像素’）代表1个物理像素，也就是1css像素 = 1物理像素
+没有加meta viewport标签时候：移动端viewport宽度为980px或者1024px，
+这时候1css像素不确定是几个物理像素（根据分辨率来算）
+写个20px的文字看看效果（见演示）
+在加了meta viewport标签以后呢？我们引入另外一个单位：密度独立像素dp/dip
+dp/dip是在不同设备都显示为同一大小的单位（见演示）
+简单理解，在使用了<xmp><meta name="viewport" content="width=device-width, initial-scale=1"></xmp>之后，
+所有1px = 1dp/dip
+添加meta标签后20px的文字（见演示）
+设备的独立像素都是可以查到的
+移动设备的分辨率：
+说到移动设备分辨率，这里先提另一个单位dpi(dot per inch)
+dpi/ppi是表示一个每inch多少个物理像素dot的单位
+在最开始是160dpi/ppi
+后来因为技术的提高，为了追求高清屏幕，有了320dpi/ppi以上等等的屏幕
+下面继续说移动设备分辨率
+我们可以理解分辨率就是长宽分别有多少个物理像素dot
+但是设备大小就那么大，所以同样大小的设备，分辨率越高，
+物理像素堆得越多，屏幕越清晰，也就是dpi越高（见演示）
+UI口中的‘像素’UI图中的像素，也就是psd中我们量出来的像素，
+比如说任务中psd图的宽度为750px或者640px（见演示）
+UI口中的像素是移动设备分辨率
+3.常见问题
+UI图拿到之后，宽度是750px或者640px怎么办？
+4.解决方案
+不负责任的说法：除以2写到css里
+
+
+LICENSE协议标准模板
+The MIT License (MIT)
+
+Copyright (c) <2020> <copyright holders>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sub license, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+协议声明中除了要求所有对被许可的软件的复制需要包含MIT License
+的声明之外，没有任何限制。所以它又被称为Expat License，与GPL相似，
+但又不像GPL那样要求使用方开源。所以在GNU的官网上，特别建议使用Apache2.0协议，
+而原因就是Apache2.0中对于专利的限制。Apache2.0的协议声明比较长，我正在努力研读中。
+
+MIT License的第一行声明了它是一份copyright，
+而不是copyleft，以及生效的开始时间和版权的所有人。
+<year>就是对应软件首次发布的时间。在我之前服务的公司里，
+我们被律师要求每一个文件的头部必须包含一段协议声明，
+而且<year>必须包括文件第一次发布的年份和最新一次更改的年份，
+如果两者相同，则只写一个年份，否则用逗号分隔2个年份。所以每年新版本发布前，
+我们都要运行一个程序自动检查scm中每个文件的更改时间并做调整。至于为什么要标注修改年份，
+我还没有弄明白，刚刚google了一下，好像是根据美国版权局（US Copyright Office）的要求吧。
+
+
+<img src="../../images/menu1.png" alt="">
+前端页面展示的数据是[object Module]
+一般情况下我们为了能在本地显示效果，写图片路径会直接这样写，
+但是在实际中图片一般都是动态上传的，所以 我把图片以变量的形式传入，
+这样就解决了，图片就能在前台正常展示了
+<img :src='menu1' alt="">
+<script>
+import menu1 from "../../src/images/menu1.png"
+import menu2 from "../../src/images/menu2.png"
+import menu3 from "../../src/images/menu3.png"
+import menu4 from "../../src/images/menu4.png"
+import menu5 from "../../src/images/menu5.png"
+import menu6 from "../../src/images/menu6.png"
+ 
+export default {
+    data(){
+        return {
+            menu1:menu1,
+            menu2:menu2,
+            menu3:menu3,
+            menu4:menu4,
+            menu5:menu5,
+            menu6:menu6
+        }
+    }
+}
+
+
+
+vue项目中引入mui scroll组件 报错：
+Uncaught TypeError: 'caller', 'callee', and 'arguments'
+ properties may not be accessed on strict mode functions 
+ or the arguments objects for calls to them
+
+原因：使用webpack打包，默认使用严格模式，导致两者冲突
+在 .babelrc 文件添加以下代码 忽视该js文件
+
+{
+    "ignore": [
+      "./src/lib/mui/js/mui.js"
+    ]
+ 
+}
+
+刚进入图片分享页面的时候，滑动条无法正常工作，如果要初始化，滑动条必须要灯dom元素加载完毕，
+所以，我们把初始化滑动条的代码，搬到了mounter生命周期函数中
+这时候tabbar无法正常工作
+解决tabbar无法正常切换组件问题：改类名
+需要把每个tabbar按钮样式中mui-tab-item重新改一下名字
