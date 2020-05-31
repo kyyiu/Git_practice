@@ -13,7 +13,7 @@
   "dependencies": {
     "babel-loader": "^7.1.5",
     "chromedriver": "^79.0.2",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "mint-ui": "^2.2.13",
     "moment": "^2.24.0",
     "vue": "^2.6.11",
